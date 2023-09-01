@@ -18,7 +18,8 @@ class Property extends Model
         'floor',
         'price',
         'adress',
-        'postal_code'
-
+        'city',
+        'postal_code',
+        'sold'
     ];
 }
