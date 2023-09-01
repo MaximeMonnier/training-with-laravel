@@ -36,7 +36,17 @@ class PropertyController extends Controller
      */
     public function store(PropertyFormRequest $request)
     {
-        //
+        $property = Property::create($request->validated());
+        $property->fill([
+            'surface' => 40,
+            'rooms' => 3,
+            'bedrooms' => 1,
+            'floor' => 0,
+            'city' => 'Besançon',
+            'code_postal' => 25000,
+            'sold' => false,
+        ]);
+        return to_route('admin.property.index')->with('success', 'Le bien a bien été créé');
     }
 
     /**
