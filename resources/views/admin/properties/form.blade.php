@@ -5,11 +5,11 @@
 @section('content')
     <h1 class="mb-5">@yield('title')</h1>
     <form class="vstack gap-2"
-        action="{{ route($property->exists ? 'admin.propertry.update' : 'admin.property.store', ['property => $property']) }}"
+        action="{{ route($property->exists ? 'admin.property.update' : 'admin.property.store', ['property => $property']) }}"
         method="POST">
 
         @csrf
-        @method($property->exists ? 'put' : 'post')
+        @method($property->exists ? 'PUT' : 'POST')
 
         <div class="row">
             @include('shared.input', [

@@ -33,7 +33,7 @@ class PropertyController extends Controller
             'floor' => 0,
             'city' => 'Besançon',
             'postal_code' => 25000,
-            'solde' => false,
+            'sold' => false,
 
         ]);
         return view('admin.properties.form', [
@@ -53,24 +53,29 @@ class PropertyController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function edit(Property $property)
     {
-        //
+        return view('admin.properties.form', [
+            'property' => $property
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PropertyFormRequest $request, Property $property)
     {
-        //
+        $property->update($request->validated());
+        return to_route('admin.property.index')->with('success', 'Le bien a bien été modifié');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Property $property)
     {
-        //
+        $property->delete();
+        return to_route('admin.property.index')->with('success', 'Le bien a bien été suprimé');
     }
 }
+// probleme pour updatete et delete a voir au rerour
